@@ -8,98 +8,96 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color(0xFF444444),
       body: SafeArea(
-        child: Center(
-          child: SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 20), // Keeps it from touching edges
-              child: Column(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 15), 
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              // --- HEADER SECTION (Logo and Title) ---
+              Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  // --- HEADER SECTION ---
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Image.asset('assets/images/dumbbell.png'),
-                      const SizedBox(width: 15),
-                      const Text(
-                        'Chimpa\nTraining\nTracker',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontFamily: 'Fontdiner Swanky',
-                          color: Color(0xFFFFB84E),
-                          fontSize: 36,
-                          height: 1.2,
-                        ),
-                      ),
-                      const SizedBox(width: 15),
-                      Image.asset('assets/images/arm.png'),
-                    ],
-                  ),
-
-                  const SizedBox(height: 15), // Slightly reduced gap
-
-                  // --- CENTRAL IMAGE ---
-                  Container(
-                    width: 250, 
-                    height: 264, 
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      image: const DecorationImage(
-                        image: AssetImage('assets/images/chimpa.png'),
-                        fit: BoxFit.cover,
-                      ),
+                  Image.asset('assets/images/dumbbell.png'),
+                  const SizedBox(width: 15),
+                  const Text(
+                    'Chimpa\nTraining\nTracker',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontFamily: 'Fontdiner Swanky',
+                      color: Color(0xFFFFB84E),
+                      fontSize: 36,
+                      height: 1.2,
                     ),
                   ),
-
-                  const SizedBox(height: 25), // Gap before buttons
-
-                  // --- INTERACTIVE BUTTONS ---
-                  
-                  // My Stats
-                  _buildButton(
-                    context,
-                    label: 'My Stats',
-                    iconPath: 'assets/images/stats.png',
-                    onTap: () => Navigator.pushNamed(context, '/stats'),
-                  ),
-                  const SizedBox(height: 15),
-                  
-                  // View Calendar
-                  _buildButton(
-                    context,
-                    label: 'View Calendar',
-                    iconPath: 'assets/images/calendar.png',
-                    onTap: () => Navigator.pushNamed(context, '/calendar'),
-                  ),
-                  const SizedBox(height: 15),
-                  
-                  // My Activities
-                  _buildButton(
-                    context,
-                    label: 'My Activities',
-                    iconPath: 'assets/images/banana.png',
-                    onTap: () => Navigator.pushNamed(context, '/activity'),
-                  ),
-                  const SizedBox(height: 15),
-                  
-                  // My Measures
-                  _buildButton(
-                    context,
-                    label: 'My Measures',
-                    iconPath: 'assets/images/measure.png',
-                    onTap: () => Navigator.pushNamed(context, '/measures'),
-                  ),
+                  const SizedBox(width: 15),
+                  Image.asset('assets/images/arm.png'),
                 ],
               ),
-            ),
+
+              const SizedBox(height: 25),
+
+              // --- CENTRAL IMAGE (Responsive and Not Cut) ---
+              Flexible(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 20),
+                  child: Image.asset(
+                    'assets/images/chimpa.png',
+                    fit: BoxFit.contain,
+                  ),
+                ),
+              ),
+
+              const SizedBox(height: 15),
+
+              // --- INTERACTIVE BUTTONS SECTION ---
+              Center(
+                child: ConstrainedBox(
+                  constraints: const BoxConstraints(maxWidth: 280),
+                  child: Column(
+                    children: [
+                      _buildButton(
+                        context,
+                        label: 'My Stats',
+                        iconPath: 'assets/images/stats.png',
+                        onTap: () => Navigator.pushNamed(context, '/stats'),
+                      ),
+                      const SizedBox(height: 12),
+                      
+                      _buildButton(
+                        context,
+                        label: 'View Calendar',
+                        iconPath: 'assets/images/calendar.png',
+                        onTap: () => Navigator.pushNamed(context, '/calendar'),
+                      ),
+                      const SizedBox(height: 12),
+                      
+                      _buildButton(
+                        context,
+                        label: 'My Activities',
+                        iconPath: 'assets/images/banana.png',
+                        onTap: () => Navigator.pushNamed(context, '/activity'),
+                      ),
+                      const SizedBox(height: 12),
+                      
+                      _buildButton(
+                        context,
+                        label: 'My Measures',
+                        iconPath: 'assets/images/measure.png',
+                        onTap: () => Navigator.pushNamed(context, '/measures'),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
           ),
         ),
       ),
     );
   }
 
+  // Helper function to build the orange menu buttons (reusable)
   Widget _buildButton(
     BuildContext context, {
     required String label,
@@ -109,28 +107,26 @@ class HomeScreen extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        width: 310,
-        height: 75,
+        height: 55,
         decoration: BoxDecoration(
           color: const Color(0xFFFFB84E),
-          borderRadius: BorderRadius.circular(40),
+          borderRadius: BorderRadius.circular(30),
         ),
-        // A Row naturally groups the items and centers the whole block
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset(
               iconPath,
-              width: 45, // Keeps the icons uniformly sized
-              height: 45,
+              width: 35,
+              height: 35,
             ),
-            const SizedBox(width: 15),
+            const SizedBox(width: 12),
             Text(
               label,
               style: const TextStyle(
                 fontFamily: 'Fontdiner Swanky',
                 color: Colors.black,
-                fontSize: 22, 
+                fontSize: 24,
               ),
             ),
           ],

@@ -114,7 +114,7 @@ class _MyActivitiesScreenState extends State<MyActivitiesScreen> {
                   ),
                   const SizedBox(height: 30), 
                   _buildInputLabel("Activity Name"),
-                  _buildTextField(_activityController, "e.g. Squats, Pull-Ups, Boxing etc."),
+                  _buildTextField(_activityController, "e.g. Squats"),
                   const SizedBox(height: 30), 
                   GestureDetector(
                     onTap: _attemptSave,
