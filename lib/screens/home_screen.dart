@@ -41,9 +41,12 @@ class HomeScreen extends StatelessWidget {
               Flexible(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 20),
-                  child: Image.asset(
-                    'assets/images/chimpa.png',
-                    fit: BoxFit.contain,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(20.0), 
+                    child: Image.asset(
+                      'assets/images/chimpa.png',
+                      fit: BoxFit.contain,
+                    ),
                   ),
                 ),
               ),
