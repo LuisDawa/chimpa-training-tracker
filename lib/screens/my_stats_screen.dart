@@ -24,6 +24,7 @@ class _MyStatsScreenState extends State<MyStatsScreen> {
   final List<String> _graphableParts = [
     'Weight', 'Neck', 'Shoulders', 'Chest', 'Waist', 'Hips', 
     'Left Arm', 'Right Arm', 'Left Forearm', 'Right Forearm', 
+    'Left Wrist', 'Right Wrist',
     'Left Thigh', 'Right Thigh', 'Left Calf', 'Right Calf'
   ];
 
@@ -98,6 +99,8 @@ class _MyStatsScreenState extends State<MyStatsScreen> {
         case 'Right Arm': value = m.rightArm; break;
         case 'Left Forearm': value = m.leftForearm; break;
         case 'Right Forearm': value = m.rightForearm; break;
+        case 'Left Wrist': value = m.leftWrist; break;
+        case 'Right Wrist': value = m.rightWrist; break;
         case 'Left Thigh': value = m.leftThigh; break;
         case 'Right Thigh': value = m.rightThigh; break;
         case 'Left Calf': value = m.leftCalf; break;
